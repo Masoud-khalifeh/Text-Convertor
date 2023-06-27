@@ -1,0 +1,52 @@
+.prevText {
+    background-color: #ecebeb4b;
+    width: 10%;
+    height: 35%;
+    border-radius: 1rem;
+    margin: 0.5% 1% 0.5% 1%;
+    padding:1rem;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-basis: 14%;
+}
+.prevText p{
+    padding-bottom: 1rem;
+}
+
+.empty hr {
+    padding: 2%;
+    margin: 10% 5%;
+    background-color: rgba(0, 0, 0, 0.144);
+    color: rgba(0, 0, 0, 0.144);
+    border-radius: 1rem;
+    border: none;
+}
+
+
+@media screen and (min-width:801px) and (max-width:1200px){
+    .prevText{
+        flex-basis: 18%;
+    }
+}
+
+@media screen and (min-width:621px) and (max-width:800px){
+    .prevText{
+        flex-basis: 25%;
+    }
+}
+
+@media screen and (min-width:460px) and (max-width:620px) {
+    .prevText{
+        flex-basis: 40%;
+        height: 60%;
+    }
+}
+
+@media screen and (max-width:459px) {
+    .prevText{
+        flex-basis: 70%;
+        height: 70%;
+    }
+}
+
