@@ -1,0 +1,43 @@
+.about{
+height: 100%;
+margin: 10%;
+}
+
+.aboutBottom {
+    height: 30%;
+    padding: 10%;
+    margin: 5%;
+    border:0.1rem solid #ecebeb;
+    background-color: #ecebeb;
+    overflow: hidden;
+}
+
+@media screen and (max-width:1200px) {
+    .aboutBottom{
+        margin-top: 15%;
+        height:70%;
+    }
+}
+
+@media screen and (min-width:621px) and (max-width:1000px) {
+    .aboutBottom{
+        margin-top: 20%;
+        height:70%;
+    }
+}
+
+@media screen and (min-width:401px) and (max-width:620px) {
+    .aboutBottom{
+        margin-top: 30%;
+        height:80%;
+    }
+}
+
+
+
+@media screen and (max-width:400px) {
+    .aboutBottom{
+        margin-top: 50%;
+        height:100%;
+    }
+}

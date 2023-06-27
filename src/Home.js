@@ -7,6 +7,8 @@ import { v4 as uuid } from 'uuid';
 
 export default function Home() {
 
+
+    //Fetch data from LocalStorage if it is not empty
     const [searchedText, setSearchedText] = useState(() => {
         const getLocalStorage = JSON.parse(window.localStorage.getItem("searchedText"));
         if (getLocalStorage) {
@@ -16,8 +18,8 @@ export default function Home() {
         }
     })
     const [inputText, setInputText] = useState("");
-    const [eText, setEText] = useState("");
-    const [isTranslated, setISTranslated] = useState(false);
+    const [eText, setEText] = useState(""); //handle the text in output
+    const [isTranslated, setISTranslated] = useState(false); //the button Translate should work just once
 
 
 
@@ -47,14 +49,14 @@ export default function Home() {
     }
 
 
-
+    //by changing each letter in input the inputText get updated
     function ChangeHandler(evt) {
         setEText({ text: "" });
         setISTranslated(false)
         setInputText({ text: evt.target.value })
     }
 
-
+    //do the translation and add it to searchedText array
     function addText() {
         if (!isTranslated && inputText) {
             setSearchedText([...searchedText, { id: searchedText.length + 1000, OText: inputText.text, EText: inputText.text }]);
@@ -65,12 +67,12 @@ export default function Home() {
 
     }
 
-
+    //set the localStorage simultaneously
     useEffect(() => {
         window.localStorage.setItem("searchedText", JSON.stringify(searchedText));
     }, [isTranslated])
 
-
+    //for new translation
     function newText() {
         setInputText({ text: "" });
         setEText({ text: "" })
@@ -80,7 +82,7 @@ export default function Home() {
     return (
         <div className="home">
 
-            <Nav new={newText} />
+            <Nav new={newText} about={true} />
 
             <div className="homeCenter">
                 <div className="homeCenterText">
@@ -102,7 +104,7 @@ export default function Home() {
                 <h5>List of Old Translations</h5>
                 <div className="prevArea">
                     {RenderEmptyField(10).map(text => (
-                        <PrevText id={text.id} Text={text.OText} key={uuid()}/>
+                        <PrevText id={text.id} Text={text.OText} key={uuid()} />
                     ))}
                 </div>
             </div>

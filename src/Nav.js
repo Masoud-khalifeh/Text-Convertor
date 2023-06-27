@@ -7,7 +7,7 @@ export default function Nav(props) {
     return (
         <nav className="nav">
             <Link className="link" onClick={props.new} to={"/"}>New Translation</Link>
-            <Link className="link" to={"/about"}>About</Link>
+            {props.about&& <Link className="link" to={"/about"}>About</Link>}
         </nav>
     )
 }
