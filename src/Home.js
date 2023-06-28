@@ -17,18 +17,20 @@ export default function Home() {
             return ""
         }
     })
-    const [inputText, setInputText] = useState("");
+    const [inputText, setInputText] = useState("");//handle the orginal text
     const [eText, setEText] = useState(""); //handle the text in output
     const [isTranslated, setISTranslated] = useState(false); //the button Translate should work just once
+    const[editedID,setEditedID]=useState("");
 
 
 
     //This function produces (num) previous search to show, if it is less than num, so produces empty ones
     function RenderEmptyField(num) {
         const updatedArray = [];
+        const reversTexts=[...searchedText].reverse();
         for (let i = 0; i < num; i++) {
             if (searchedText[i]) {
-                updatedArray.push({ ...searchedText[i], OText: trimText(searchedText[i].OText, 35) + " ..." });
+                updatedArray.push({ ...reversTexts[i], OText: trimText(reversTexts[i].OText, 35) + " ..." });
             } else {
                 updatedArray.push({
                     id: null,
@@ -56,14 +58,32 @@ export default function Home() {
         setInputText({ text: evt.target.value })
     }
 
-    //do the translation and add it to searchedText array
-    function addText() {
-        if (!isTranslated && inputText) {
-            setSearchedText([...searchedText, { id: searchedText.length + 1000, OText: inputText.text, EText: inputText.text }]);
+    //do the translation and add it to searchedText array,if we pass (id), it should update 
+    function addText(id) {
+        if(!editedID){
+            if (!isTranslated && inputText) {
+                setSearchedText([...searchedText, { id: searchedText.length + 1000, OText: inputText.text, EText: inputText.text }]);
+                setEText(inputText);
+                setISTranslated(true);
+                setEditedID(searchedText.length + 1000)
+    
+            }
+        }else{
+            //update searchedText where its id is equal id
+            const updatedArray=searchedText.map(item=>{
+                if(item.id===id){
+                    return {...item, OText:inputText.text ,EText:inputText.text}
+                }else{
+                    return item;
+                }
+            })
+            setSearchedText(updatedArray);
             setEText(inputText);
             setISTranslated(true);
 
+
         }
+        
 
     }
 
@@ -75,9 +95,24 @@ export default function Home() {
     //for new translation
     function newText() {
         setInputText({ text: "" });
-        setEText({ text: "" })
+        setEText({ text: "" });
+        setEditedID("");
+
     }
 
+
+//getting(id) can return the SearchedText anf fill the TextAreas
+    function findText (id){
+        const editText=searchedText.find(item=>{
+            if(item.id===id){
+                return item;
+            }
+        })
+        setInputText({text:editText.OText});
+        setEText({ text: editText.EText });
+        setEditedID(id);
+      
+    }
 
     return (
         <div className="home">
@@ -96,7 +131,7 @@ export default function Home() {
                     </div>
                 </div>
                 <div>
-                    <button className="button" onClick={addText}>Translate</button>
+                    <button className="button" onClick={()=>addText(editedID)}>Translate</button>
                 </div>
             </div>
 
@@ -104,7 +139,7 @@ export default function Home() {
                 <h5>List of Old Translations</h5>
                 <div className="prevArea">
                     {RenderEmptyField(10).map(text => (
-                        <PrevText id={text.id} Text={text.OText} key={uuid()} />
+                        <PrevText id={text.id} Text={text.OText} key={uuid()} click={()=>findText(text.id)} />
                     ))}
                 </div>
             </div>

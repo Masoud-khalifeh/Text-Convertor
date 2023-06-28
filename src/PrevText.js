@@ -4,9 +4,9 @@ import './Styles/PrevText.css'
 export default function PrevText(props) {
 
     return (
-        <div className="prevText">
+        <div className="prevText" onClick={props.click}>
             {props.id &&
-                <h5>Id{props.id}</h5>
+                <h5>ID{props.id}</h5>
             }
             {props.Text ?
                 <p>{props.Text}</p> :

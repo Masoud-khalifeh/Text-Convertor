@@ -25,9 +25,10 @@
     justify-content: space-around;
 }
 
-.homeCenter div:nth-child(2){
+.homeCenter div:nth-child(2) {
     margin: 2% 0;
 }
+
 .homeCenter .button {
     /* margin: 3rem 0 0 0; */
     margin: auto;
@@ -39,7 +40,7 @@
 
 }
 
-.homeCenter .button:hover{
+.homeCenter .button:hover {
     background-color: rgba(237, 247, 250, 0.568);
     border-radius: 1rem;
     cursor: pointer;
@@ -68,25 +69,26 @@
 
 }
 
-.textArea{
-    width:48%;
+.textArea {
+    width: 48%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
-}
-.textAreatag{
-    width:100%;
-    height:90%;
-    resize: none;
-    border:0.2rem solid #ecebeb
+
 }
 
-.filled{
+.textAreatag {
+    width: 100%;
+    height: 90%;
+    resize: none;
+    border: 0.2rem solid #ecebeb
+}
+
+.filled {
     background-color: #f5f5f5;
-    border:0.2rem solid #ecebeb ;
+    border: 0.2rem solid #ecebeb;
 }
 
 
@@ -95,13 +97,14 @@
 
 @media screen and (max-width:620px) {
     .home {
-        height: 55rem;
+        height: 35rem;
+        margin-top: 40%;
         justify-content: space-between;
     }
 
     .homeCenterText {
         flex-direction: column;
-        margin-bottom: 15%;
+        margin-bottom: 25%;
     }
 
     .homeBottom {
@@ -115,11 +118,20 @@
         height: 4rem;
         font-size: larger;
         margin-top: 15%;
-    
+
     }
-    .textArea{
+
+    .textArea {
         width: 80%;
     }
-    
 
+
+}
+
+
+@media (min-width:621px) and (max-width:1400px) {
+
+    .home {
+        margin-top: 13%;
+    }
 }
